@@ -4,6 +4,16 @@ import torch
 import numpy as np
 import cv2
 from torchvision import transforms as T
+import argparse
+
+# The argument
+parser = argparse.ArgumentParser()
+parser.add_argument('--config_path', type=str,
+                    default='/home/wei/catkin_ws/src/mrcnn_ros/config/e2e_mask_rcnn_R_50_FPN_1x_caffe2_singleobj.yaml',
+                    help='Absolute path to maskrcnn_benchmark config.')
+parser.add_argument('--net_path', type=str,
+                    default='/home/wei/data/pdc/coco/output_mug/model_0120000.pth',
+                    help='Absolute path to trained network. If empty, use the network in the config file.')
 
 # The maskrcnn staff
 from maskrcnn_benchmark.config import cfg
@@ -177,7 +187,8 @@ class MaskRCNNInstanceSegmentationServer(object):
 
         # update the config options with the config file
         cfg.merge_from_file(config_path)
-        cfg.merge_from_list(["MODEL.WEIGHT", net_path])
+        if len(net_path) > 0:
+            cfg.merge_from_list(["MODEL.WEIGHT", net_path])
         if not use_gpu:
             cfg.merge_from_list(["MODEL.DEVICE", "cpu"])
 
@@ -248,8 +259,9 @@ class MaskRCNNInstanceSegmentationServer(object):
 
 
 def main():
-    net_path = '/home/wei/data/pdc/coco/output_mug/model_0120000.pth'
-    config_path = '/home/wei/catkin_ws/src/mrcnn_ros/config/e2e_mask_rcnn_R_50_FPN_1x_caffe2_singleobj.yaml'
+    args = parser.parse_args()
+    net_path = args.net_path
+    config_path = args.config_path
     server = MaskRCNNInstanceSegmentationServer(config_path, net_path)
     server.run()
 

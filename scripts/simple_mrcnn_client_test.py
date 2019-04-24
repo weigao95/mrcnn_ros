@@ -21,6 +21,7 @@ def main():
     # Call the service
     response = instance_segment(request)
     print response.object_names
+    print response.bounding_boxes
 
 
 if __name__ == '__main__':
