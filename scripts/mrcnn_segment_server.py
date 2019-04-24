@@ -177,7 +177,7 @@ class COCODPredictor(object):
 
 class MaskRCNNInstanceSegmentationServer(object):
 
-    def __init__(self, config_path, net_path, use_gpu=False):
+    def __init__(self, config_path, net_path, use_gpu=True):
         # The converter of opencv image
         self._bridge = CvBridge()
 
