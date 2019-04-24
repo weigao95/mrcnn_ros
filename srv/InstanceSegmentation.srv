@@ -1,0 +1,5 @@
+sensor_msgs/Image rgb_image
+---
+string[] object_names
+sensor_msgs/RegionOfInterest[] bounding_boxes
+sensor_msgs/Image[] binary_masks # object_names[i], bounding_boxes[i] and binary_masks[i] are the same object
