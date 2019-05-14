@@ -1,0 +1,7 @@
+<launch>
+  <node pkg="mrcnn_ros" name="mrcnn_segment_server" type="mrcnn_segment_server.py" 
+  args=
+  "--config_path /home/wei/catkin_ws/src/mrcnn_ros/config/e2e_mask_rcnn_R_50_FPN_1x_caffe2_singleobj.yaml 
+  --net_path /home/wei/data/pdc/coco/output_mug/model_0120000.pth">
+  </node>
+</launch>

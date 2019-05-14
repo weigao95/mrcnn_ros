@@ -259,7 +259,8 @@ class MaskRCNNInstanceSegmentationServer(object):
 
 
 def main():
-    args = parser.parse_args()
+    # args = parser.parse_args()
+    args, unknown = parser.parse_known_args()
     net_path = args.net_path
     config_path = args.config_path
     server = MaskRCNNInstanceSegmentationServer(config_path, net_path)
