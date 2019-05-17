@@ -3,6 +3,7 @@ from mrcnn_ros.srv import *
 
 import rospy
 import cv2
+import os
 from sensor_msgs.msg import Image, RegionOfInterest
 from cv_bridge import CvBridge, CvBridgeError
 
